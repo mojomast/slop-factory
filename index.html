@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slop Factory — community compute + agents building together</title>
+<meta name="description" content="A pitch for a Hermes community Slop Factory: shared inference, pooled sandboxed workers, a contract kanban, clanker code review and community starring.">
+<meta name="theme-color" content="#0B0F14"><meta name="color-scheme" content="dark">
+<meta property="og:type" content="website"><meta property="og:title" content="Slop Factory — community compute + agents building together">
+<meta property="og:description" content="Shared inference, pooled sandboxed workers, a contract kanban and clanker code review for the Hermes community.">
+<meta property="og:url" content="https://mojomast.github.io/slop-factory/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0F14;--s:#111821;--b:#243242;--t:#E6EDF5;--m:#93A4B8;--h:#F0B86E;--g:#54D3A1}
+*{box-sizing:border-box}html{color-scheme:dark}
+body{margin:0;background:radial-gradient(900px 400px at 80% -10%,#f0b86e18,transparent),var(--bg);color:var(--t);font:16px/1.6 Geist,system-ui,sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Syne,sans-serif;line-height:1.1;margin:0}
+h1{font-size:clamp(2.6rem,8vw,5rem);font-weight:800}h1 em{color:var(--h);font-style:normal}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:8px}
+.mono{font-family:'Geist Mono',monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--g)}
+header.hero{padding:96px 0 64px}.hero p{max-width:620px;color:var(--m);font-size:1.15rem;margin:20px 0 28px}
+.btn{display:inline-block;padding:11px 20px;border-radius:10px;border:1px solid var(--b);color:var(--t);text-decoration:none;font-weight:500;margin:0 8px 8px 0}
+.btn.p{background:var(--h);color:#0B0F14;border-color:var(--h)}.btn:hover{border-color:var(--h)}
+section{padding:48px 0;border-top:1px solid var(--b)}.sub{color:var(--m);margin:0 0 28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:22px}
+.card h3{font-size:1.3rem;margin:6px 0 12px}.card h4{font-family:'Geist Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--h);margin:14px 0 2px;font-weight:500}
+.card p{margin:0;color:var(--m);font-size:.95rem}
+.card.wide{grid-column:1/-1;border-color:var(--h)}
+ul.pr{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+ul.pr li{padding:14px 16px;border-left:3px solid var(--g);background:var(--s);border-radius:0 10px 10px 0;color:var(--m)}ul.pr b{color:var(--t)}
+ol.rm{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+ol.rm li{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:16px 18px;display:flex;gap:16px;align-items:baseline}
+ol.rm .mono{min-width:90px;color:var(--h)}ol.rm span{color:var(--m)}ol.rm b{color:var(--t)}
+footer{padding:40px 0 60px;color:var(--m);font-size:.9rem;border-top:1px solid var(--b)}
+a{color:var(--g)}
+@media(max-width:560px){ol.rm li{flex-direction:column;gap:4px}header.hero{padding-top:56px}}
+</style></head><body><div class="w">
+<header class="hero"><div class="mono">Hermes community · post-hackathon idea</div>
+<h1>Slop <em>Factory</em></h1>
+<p>Community compute + agents building together. Pool inference, lend sandboxed workers, share a contract board, and let each other's clankers review code — with humans always in charge.</p>
+<a class="btn p" href="#ideas">See the ideas</a><a class="btn" href="#involved">Get involved</a></header>
+
+<section id="ideas"><div class="mono">The ideas</div><h2>Six pieces, one factory</h2><p class="sub">Each one works on its own. Together they make a community that ships faster than any one of us.</p>
+<div class="grid">
+<div class="card wide"><div class="mono">Umbrella</div><h3>Slop Factory</h3>
+<h4>What</h4><p>The umbrella over everything below, plus a public contributors page showing each person's merges, reviews and compute given.</p>
+<h4>How</h4><p>The board, pooled workers, shared inference and peer review feed one public ledger. Stars and follows come from people who actually worked together.</p>
+<h4>Exists in rizzstack</h4><p>Orbit's board and collab chat, bundlebees contracts and hyvv sandboxes already do this for one person.</p></div>
+
+<div class="card"><div class="mono">01</div><h3>Shared inference</h3>
+<h4>What</h4><p>A token router so members who lack inference can use what others choose to share.</p>
+<h4>How</h4><p>A router like Bifrost issues each member a virtual key with spend caps, rate limits and per-person usage logs. Donors fund a pay-as-you-go pool or bring their own keys.</p>
+<h4>Exists in rizzstack</h4><p>Bifrost is already the chosen router for Orbit.</p></div>
+
+<div class="card"><div class="mono">02</div><h3>Shared sandboxed workers</h3>
+<h4>What</h4><p>Resource-strapped members borrow worker slots from those with spare capacity.</p>
+<h4>How</h4><p>Hosts lend a few slots to approved repos. Code runs only in a sandbox with a model-endpoint-only network, no credentials inside, and an auto-kill timeout. Hosts can pull slots back any time.</p>
+<h4>Exists in rizzstack</h4><p>hyvv runs sandboxed bees (2 cores, 4 GB each) behind an allow-list.</p></div>
+
+<div class="card"><div class="mono">03</div><h3>Group kanban</h3>
+<h4>What</h4><p>One board where members commit workers or inference to move a project forward.</p>
+<h4>How</h4><p>Every card is an ACDD/TDD contract. Claim a card, attach compute, and merge only with passing evidence. The board records who contributed what.</p>
+<h4>Exists in rizzstack</h4><p>The workflow contract format and Orbit's board and chat.</p></div>
+
+<div class="card"><div class="mono">04</div><h3>Clanker code review</h3>
+<h4>What</h4><p>Request a review and another member's agent picks it up.</p>
+<h4>How</h4><p>A Hermes plugin runs lint and tests in that member's own sandbox, then posts one advisory summary comment. A human decides whether to merge.</p>
+<h4>Exists in rizzstack</h4><p>slop-lint, plus a fork-safe PR summary comment workflow.</p></div>
+
+<div class="card"><div class="mono">05</div><h3>Community starring skill</h3>
+<h4>What</h4><p>An agent skill that stars and follows the community's repos and people.</p>
+<h4>How</h4><p>It reads the shared community list, acts only on entries from it, runs once a day, and shows a dry-run preview first. It's community-based, not a star train.</p>
+<h4>Exists in rizzstack</h4><p>Agent skills and scheduled routines.</p></div>
+</div></section>
+
+<section><div class="mono">Principles</div><h2>Safe and fair by design</h2><p class="sub">Sharing compute only works if nobody gets burned.</p>
+<ul class="pr">
+<li><b>Sandboxed.</b> Borrowed workers never see credentials or the open network.</li>
+<li><b>Fail-closed.</b> If a check is missing or unclear, the answer is no.</li>
+<li><b>Opt-in.</b> Nobody's compute or keys are used unless they choose.</li>
+<li><b>Caps you control.</b> Each donor sets limits and can revoke at any time.</li>
+<li><b>Humans merge.</b> Agent reviews are advisory; people approve.</li>
+<li><b>No ToS-breaking.</b> We never share a single-person subscription. We use pay-as-you-go or per-person keys.</li></ul></section>
+
+<section><div class="mono">Roadmap</div><h2>Start small, then pool</h2><p class="sub">Small, useful, and visible first. Trust and budget rules come before shared compute.</p>
+<ol class="rm">
+<li><span class="mono">Phase 1</span><span><b>Clanker review + starring skill.</b> Both work right away and show something real.</span></li>
+<li><span class="mono">Phase 2</span><span><b>Group kanban + contributors page.</b> Contract cards and a public ledger.</span></li>
+<li><span class="mono">Phase 3</span><span><b>Shared workers and inference.</b> Once trust, caps and budget rules are agreed.</span></li></ol></section>
+
+<section id="involved"><div class="mono">Get involved</div><h2>Build it with us</h2><p class="sub">Have thoughts, want to prototype a piece, or want your repo involved? Start here.</p>
+<a class="btn p" href="https://github.com/mojomast">GitHub: mojomast</a><a class="btn" href="https://hermes.rizz.click/">See the plugins</a></section>
+<footer>A pitch from mojomast / @ussyverse. Idea stage, nothing here is live yet.</footer>
+</div></body></html>
