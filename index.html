@@ -35,12 +35,21 @@ ol.rm li{background:var(--s);border:1px solid var(--b);border-radius:12px;paddin
 ol.rm .mono{min-width:90px;color:var(--h)}ol.rm span{color:var(--m)}ol.rm b{color:var(--t)}
 footer{padding:40px 0 60px;color:var(--m);font-size:.9rem;border-top:1px solid var(--b)}
 a{color:var(--g)}
+code{font-family:'Geist Mono',monospace;font-size:.85em;color:var(--h)}
+pre{background:var(--s);border:1px solid var(--b);border-radius:12px;padding:16px;overflow-x:auto;margin:0}pre code{color:var(--t)}
+.tw{overflow-x:auto}table.t{width:100%;border-collapse:collapse;font-size:.92rem}.t th,.t td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--b);color:var(--m);vertical-align:top}.t th{color:var(--t);font-family:'Geist Mono',monospace;font-size:.72rem;text-transform:uppercase}
+.ok{color:var(--g)!important}.todo{color:var(--h)!important}
+ol.flow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+ol.flow li{background:var(--s);border:1px solid var(--b);border-top:3px solid var(--h);border-radius:10px;padding:12px;font-size:.88rem;color:var(--m)}ol.flow b{display:block;color:var(--t);margin-bottom:4px;font-family:Syne,sans-serif}
+details{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:12px 16px;margin-bottom:10px}summary{cursor:pointer;font-weight:600}details p{color:var(--m);margin:8px 0 0}
+.card p+p{margin-top:8px}
+
 @media(max-width:560px){ol.rm li{flex-direction:column;gap:4px}header.hero{padding-top:56px}}
 </style></head><body><div class="w">
 <header class="hero"><div class="mono">Hermes community · post-hackathon idea</div>
 <h1>Slop <em>Factory</em></h1>
 <p>Community compute + agents building together. Pool inference, lend sandboxed workers, share a contract board, and let each other's clankers review code — with humans always in charge.</p>
-<a class="btn p" href="#ideas">See the ideas</a><a class="btn" href="#involved">Get involved</a></header>
+<a class="btn p" href="#ideas">See the ideas</a><a class="btn" href="#fit">Fits your workflow</a><a class="btn" href="#involved">Get involved</a></header>
 
 <section id="ideas"><div class="mono">The ideas</div><h2>Six pieces, one factory</h2><p class="sub">Each one works on its own. Together they make a community that ships faster than any one of us.</p>
 <div class="grid">
@@ -74,6 +83,83 @@ a{color:var(--g)}
 <h4>How</h4><p>It reads the shared community list, acts only on entries from it, runs once a day, and shows a dry-run preview first. It's community-based, not a star train.</p>
 <h4>Exists in rizzstack</h4><p>Agent skills and scheduled routines.</p></div>
 </div></section>
+
+<section id="honest"><div class="mono">Straight talk</div><h2>rizzstack is a one-person stack. You don't need it.</h2>
+<p class="sub">Today, one developer uses rizzstack: the sandboxed workers, the contract board, the dispatch and review plumbing. The pitch is to open pieces of it up, not to ask anyone to switch tools. Everything below plugs into what you already use: your editor, your agent, your GitHub repos.</p></section>
+
+<section id="fit"><div class="mono">Fits how you already work</div><h2>Integration surfaces</h2><p class="sub">Each surface is small and optional. Pick one, or none. All of these are proposed unless marked as existing.</p>
+<div class="grid">
+<div class="card"><div class="mono">Surface A</div><h3>GitHub issue + label</h3><p>Add a label like <code>factory:review</code> or <code>factory:build</code> to an issue or PR in your own repo to request work. No new tool for you.</p></div>
+<div class="card"><div class="mono">Surface B</div><h3>OpenAI-compatible endpoint</h3><p>A token router speaks the standard chat-completions API. Anything that lets you set a base URL and key can use it: Hermes, OpenCode, Claude Code, Cursor, Aider, Continue, or your own scripts. One key per person, with caps.</p></div>
+<div class="card"><div class="mono">Surface C</div><h3>Lend-a-slot worker</h3><p>A small container you choose to run. It offers a few CPU slots to the pool, with caps you set and a sandbox around every job. Stop the container and you're out.</p></div>
+<div class="card"><div class="mono">Surface D</div><h3>Hermes plugin / skill</h3><p>For people on Hermes: request a review, check the board and see your ledger from inside your agent. Hermes plugins are the format rizzstack's own plugins already use.</p></div>
+<div class="card"><div class="mono">Surface E</div><h3>GitHub Action</h3><p>Posts one advisory summary comment on a PR with lint, tests and the review result. Built on the fork-safe PR comment pattern that already exists.</p></div>
+<div class="card"><div class="mono">Surface F</div><h3>MCP server for the board</h3><p>Lets any MCP-capable agent list cards, claim one and attach evidence. Your agent talks to the board without you leaving your workflow.</p></div>
+</div></section>
+
+<section id="personas"><div class="mono">Walkthroughs</div><h2>Pick the one that sounds like you</h2><p class="sub">Setup times are targets for the proposed kit, not measured numbers.</p>
+<div class="grid">
+<div class="card"><h3>I use Hermes</h3><h4>Set up (~5 min)</h4><p>Install the proposed Factory plugin, set your per-person key as the provider.</p><h4>You give</h4><p>Reviews of other people's PRs, when you choose.</p><h4>You get</h4><p>Reviews on yours and access to shared inference.</p><h4>A day</h4><p>Morning: ask your agent to request a review on your PR. Afternoon: it offers you a queue of open review requests. You accept one, your agent runs it in your sandbox, and your ledger gets a credit.</p></div>
+<div class="card"><h3>I use Claude Code, Cursor or OpenCode</h3><h4>Set up (~5 min)</h4><p>Point your tool at the router's base URL with your key. Optionally add the board's MCP server.</p><h4>You give</h4><p>Nothing required. Reviews and spare slots if you want credit.</p><h4>You get</h4><p>A fallback model pool and background workers for long tasks.</p><h4>A day</h4><p>You write code as usual. When you hit a rate limit, your tool switches to the shared endpoint. For a big refactor, you file a card and a pooled worker picks it up while you move on.</p></div>
+<div class="card"><h3>I just use GitHub</h3><h4>Set up (~2 min)</h4><p>Add the proposed Action file to a repo and create the labels.</p><h4>You give</h4><p>A label on issues you'd like help with.</p><h4>You get</h4><p>An advisory review comment on every labeled PR.</p><h4>A day</h4><p>You open a PR and add <code>factory:review</code>. Later a single summary comment appears. You read it, fix what matters, and merge it yourself.</p></div>
+<div class="card"><h3>I have spare compute</h3><h4>Set up (~10 min)</h4><p>Run the proposed worker container. Set max slots, hours and which repos you trust.</p><h4>You give</h4><p>Sandboxed CPU time.</p><h4>You get</h4><p>Ledger credit you can spend on tokens or reviews.</p><h4>A day</h4><p>The worker sits idle. A trusted repo's job arrives, runs with no network beyond the model endpoint and no credentials inside, gets killed on timeout, and returns logs. You see it in your usage page.</p></div>
+<div class="card"><h3>I have no budget for inference</h3><h4>Set up (~5 min)</h4><p>Get a per-person key with a small starter cap.</p><h4>You give</h4><p>Reviews, issue triage, docs or testing: work that doesn't need tokens.</p><h4>You get</h4><p>Tokens from a donor-funded pool.</p><h4>A day</h4><p>You review two PRs, earn credit, and spend it on a day of coding. The cap stops anyone from overspending.</p></div>
+</div></section>
+
+<section id="ledger"><div class="mono">Fairness</div><h2>Contribution ledger and trust levels</h2><p class="sub">A simple give/get record, so sharing stays fair and nobody gets quietly drained.</p>
+<div class="grid">
+<div class="card"><h3>Give / get</h3><p>The ledger tracks three units: <b>compute minutes</b> (slots lent or used), <b>tokens</b> (through the router) and <b>reviews</b> (given and received). Credit earned in one unit can be spent in another at rates the group agrees on. Balances are visible to everyone, and nobody has to go positive to participate.</p></div>
+<div class="card"><h3>Trust levels (proposed)</h3><table class="t"><tr><th>Level</th><th>What it allows</th></tr>
+<tr><td>New</td><td>Use the router with a small cap. Their code never runs on your worker.</td></tr>
+<tr><td>Known</td><td>Their jobs can run on workers whose owners opt in, in the sandbox.</td></tr>
+<tr><td>Trusted</td><td>Larger caps, and they can request reviews from the pool.</td></tr></table>
+<p style="margin-top:10px">You decide which level may use your slots. Trust moves up through merged work and reviews, and it can be revoked.</p></div>
+</div></section>
+
+<section id="flow"><div class="mono">End to end</div><h2>One card, from request to credit</h2><p class="sub">The target flow. Humans stay in the loop at the merge step.</p>
+<ol class="flow">
+<li><b>1. File</b><span>A dev files a card, or labels an issue.</span></li>
+<li><b>2. Claim</b><span>A member or an agent claims it.</span></li>
+<li><b>3. Run</b><span>A pooled worker runs it in a sandbox, using the shared router.</span></li>
+<li><b>4. Evidence</b><span>Tests and results attach to the card.</span></li>
+<li><b>5. Review</b><span>Another member's clanker posts an advisory comment.</span></li>
+<li><b>6. Merge</b><span>A human reads it and merges, or doesn't.</span></li>
+<li><b>7. Credit</b><span>The ledger credits compute, tokens and review.</span></li>
+</ol></section>
+
+<section id="proposed"><div class="mono">Proposed</div><h2>What the config might look like</h2><p class="sub">Illustrative only. None of this exists yet, and the names will change.</p>
+<pre><code># PROPOSED — not implemented
+# Tool config: any OpenAI-compatible client
+base_url: https://&lt;router-host&gt;/v1
+api_key:  &lt;your per-person key&gt;
+
+# PROPOSED — worker lending policy
+lend:
+  max_slots: 2
+  hours: "22:00-07:00"
+  allow_trust_level: known
+  allow_repos: [your-org/your-repo]
+  network: model-endpoint-only</code></pre></section>
+
+<section id="status"><div class="mono">Reality check</div><h2>What exists vs what we'd build</h2>
+<div class="tw"><table class="t"><tr><th>Piece</th><th>Status</th><th>Notes</th></tr>
+<tr><td>hyvv sandboxed workers</td><td class="ok">Built</td><td>Single-owner today.</td></tr>
+<tr><td>bundlebees dispatch + risk tiers</td><td class="ok">Built</td><td>Refuses briefs below a risk floor.</td></tr>
+<tr><td>Orbit board, collab and observability</td><td class="ok">Built</td><td>One user today.</td></tr>
+<tr><td>Workflow contracts + evidence</td><td class="ok">Built</td><td>ACDD/TDD card format.</td></tr>
+<tr><td>Fork-safe PR summary comment</td><td class="ok">Built</td><td>Basis for the Action.</td></tr>
+<tr><td>Multi-tenant keys and budgets</td><td class="todo">To build</td><td>Router with per-person caps.</td></tr>
+<tr><td>Slot lending</td><td class="todo">To build</td><td>Worker container plus policy.</td></tr>
+<tr><td>Contribution ledger</td><td class="todo">To build</td><td>Public give/get record.</td></tr>
+<tr><td>Review-request plugin</td><td class="todo">To build</td><td>Hermes plugin plus Action.</td></tr>
+<tr><td>Onboarding kit</td><td class="todo">To build</td><td>Docs, labels, example configs.</td></tr></table></div></section>
+
+<section id="faq"><div class="mono">FAQ</div><h2>Questions you should ask</h2>
+<details><summary>Do I need rizzstack?</summary><p>No. rizzstack is the author's own stack. You use an endpoint, a label, a plugin or an Action, whichever fits.</p></details>
+<details><summary>Is my code safe?</summary><p>Your code only runs on workers whose owners opted in and trust you. Jobs run in sandboxes with no credentials and restricted networking. If a check fails, the job doesn't run. Don't put secrets in anything you share. Treat this as a design goal, since it isn't built yet.</p></details>
+<details><summary>What does it cost?</summary><p>Nothing to join. Inference comes from pay-as-you-go keys that people donate or bring, with caps. We won't share a single-person subscription across people, because that breaks most providers' terms.</p></details>
+<details><summary>What if I leave?</summary><p>Revoke your key, stop your worker container, and your repos keep working as plain GitHub repos. Your ledger history can be exported.</p></details>
+<details><summary>Can I limit what I share?</summary><p>Yes. You set slots, hours, token caps, which repos and which trust level can use them. Sharing nothing and just using the review comments is fine too.</p></details></section>
 
 <section><div class="mono">Principles</div><h2>Safe and fair by design</h2><p class="sub">Sharing compute only works if nobody gets burned.</p>
 <ul class="pr">
